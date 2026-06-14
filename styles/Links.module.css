@@ -1,0 +1,101 @@
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  background-color: #0a0a0a;
+  color: #eaeaea;
+  text-align: center;
+}
+
+.title {
+  font-size: 2.5rem;
+  background: linear-gradient(135deg, #e4c580, #b88b2c);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: #aaa;
+  margin-bottom: 2rem;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1.2rem;
+  margin-bottom: 3rem;
+}
+
+.card {
+  background: #111;
+  border: 1px solid #2a2a2a;
+  border-radius: 20px;
+  padding: 1rem;
+  text-decoration: none;
+  color: #eaeaea;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s;
+}
+
+.card:hover {
+  border-color: #d4af37;
+  transform: translateY(-3px);
+}
+
+.cardIcon {
+  font-size: 1.5rem;
+}
+
+.cardName {
+  font-weight: 500;
+}
+
+.discordSection {
+  margin: 2rem 0;
+}
+
+.discordSection h2 {
+  border-left: 4px solid #d4af37;
+  display: inline-block;
+  padding-left: 0.8rem;
+}
+
+.discordGrid {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.discordCard {
+  background: #111;
+  border: 1px solid #2a2a2a;
+  border-radius: 40px;
+  padding: 0.6rem 1.5rem;
+  text-decoration: none;
+  color: #d4af37;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.discordCard:hover {
+  background: #d4af37;
+  color: #0a0a0a;
+  border-color: #d4af37;
+}
+
+.contact {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid #2a2a2a;
+}
+
+.contact strong {
+  color: #d4af37;
+}
