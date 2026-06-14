@@ -143,7 +143,7 @@ export default function Portfolio() {
             <iframe
               allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
               frameBorder="0"
-              height="150"
+              height="300"
               style={{ width: '100%', maxWidth: '660px', borderRadius: '12px' }}
               src="https://embed.music.apple.com/cn/playlist/music/pl.u-55D6ZJ1H6v7WjjB?l=en"
             />

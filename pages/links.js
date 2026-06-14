@@ -2,17 +2,16 @@ import Navbar from '../components/Navbar';
 import styles from '../styles/Links.module.css';
 
 const socialLinks = [
-  { name: 'Roblox', url: 'https://roblox.com/users/3464832936/profile', icon: '🎮' },
-  { name: 'Steam', url: 'https://steamcommunity.com/profiles/76561199477098499', icon: '🎲' },
-  { name: 'YouTube', url: 'https://www.youtube.com/channel/UCvWG_KhLBmvBKM7ePJc-UIQ', icon: '📺' },
-  { name: 'Instagram', url: 'https://www.instagram.com/batelejack', icon: '📷' },
-  { name: 'Xbox', url: 'https://www.xbox.com/', icon: '🎮' }, // 替换为你个人资料链接，如果可分享
-  { name: 'GitHub', url: 'https://github.com/BateleJack', icon: '🐙' },
-  { name: 'Apple Music', url: 'https://music.apple.com/cn/playlist/music/pl.u-55D6ZJ1H6v7WjjB', icon: '🎵' },
+  { name: 'Steam', url: 'https://steamcommunity.com/profiles/76561199477098499', icon: 'https://cdn.simpleicons.org/steam/white' },
+  { name: 'YouTube', url: 'https://www.youtube.com/channel/UCvWG_KhLBmvBKM7ePJc-UIQ', icon: 'https://cdn.simpleicons.org/youtube/white' },
+  { name: 'Instagram', url: 'https://www.instagram.com/batelejack', icon: 'https://cdn.simpleicons.org/instagram/white' },
+  { name: 'Xbox', url: 'https://www.xbox.com/', icon: 'https://cdn.simpleicons.org/xbox/white' },
+  { name: 'GitHub', url: 'https://github.com/BateleJack', icon: 'https://cdn.simpleicons.org/github/white' },
+  { name: 'Roblox', url: 'https://roblox.com/users/3464832936/profile', icon: 'https://cdn.simpleicons.org/roblox/white' },
 ];
 
 const discordInvites = [
-  { name: 'Project Flight Community', url: 'https://discord.gg/你的邀请码' }, // 请替换真实邀请码
+  { name: 'Project Flight Community', url: 'https://discord.gg/你的邀请码' },
   { name: 'Star Alliance Virtual', url: 'https://discord.gg/你的邀请码' },
 ];
 
@@ -27,7 +26,7 @@ export default function Links() {
         <div className={styles.cardGrid}>
           {socialLinks.map(link => (
             <a key={link.name} href={link.url} target="_blank" rel="noopener noreferrer" className={styles.card}>
-              <span className={styles.cardIcon}>{link.icon}</span>
+              <img src={link.icon} alt={link.name} className={styles.cardIcon} />
               <span className={styles.cardName}>{link.name}</span>
             </a>
           ))}

@@ -12,16 +12,21 @@ export default function Home() {
         const res = await fetch('/api/steam?endpoint=recent');
         const data = await res.json();
         if (data.response && data.response.games) {
-          // 处理最近游玩（最多6个），添加图标 URL
-          const games = data.response.games.slice(0, 8).map(game => ({
+          // 构建游戏列表，并确保按最近游玩时间降序（最新的在前）
+          let games = data.response.games.map(game => ({
             appid: game.appid,
             name: game.name,
-            playtime_2weeks: Math.floor(game.playtime_2weeks / 60),
-            playtime_total: Math.floor(game.playtime_forever / 60),
+            playtime_2weeks: Math.floor((game.playtime_2weeks || 0) / 60),
+            playtime_total: Math.floor((game.playtime_forever || 0) / 60),
+            last_played: game.rtime_last_played || 0, // 用于排序的时间戳
             iconUrl: game.img_icon_url
               ? `https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/${game.appid}/${game.img_icon_url}.jpg`
               : null,
           }));
+          // 显式按 last_played 降序排序（最新的在前）
+          games.sort((a, b) => b.last_played - a.last_played);
+          // 只取前 8 个
+          games = games.slice(0, 8);
           setRecentGames(games);
         }
       } catch (error) {
@@ -33,9 +38,7 @@ export default function Home() {
     fetchRecent();
   }, []);
 
-  // 简单的背景渐变（根据图标主色生成，这里使用半透明叠加，实际主色提取较复杂，可后续增强）
-  // 为了满足“提取高级多色渐变”，这里使用深色渐变+图标叠加，视觉上已很高级
-  // 若需要真正的动态主色，可以引入 color-thief，但会增加体积和复杂度。
+  // 卡片背景样式（带模糊）
   const getCardStyle = (iconUrl) => ({
     backgroundImage: iconUrl ? `linear-gradient(135deg, rgba(20,20,40,0.9), rgba(0,0,0,0.95)), url(${iconUrl})` : 'linear-gradient(135deg, #1a1a2e, #0a0a0a)',
     backgroundSize: 'cover',
@@ -63,8 +66,16 @@ export default function Home() {
           }}>Batele Jack</h1>
           <p style={{ textAlign: 'center', marginTop: '0.5rem' }}>欢迎来到我的个人网站</p>
 
-          {/* 最近游玩横向滚动区域 */}
-          <div style={{ marginTop: '3rem' }}>
+          {/* 导航按钮 - 放在最近游玩上方，使其下移 */}
+          <div style={{ marginTop: '2rem', display: 'flex', justifyContent: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
+            <a href="/battlestation" style={{ color: '#d4af37', textDecoration: 'none' }}>装备库</a>
+            <a href="/portfolio" style={{ color: '#d4af37', textDecoration: 'none' }}>作品集</a>
+            <a href="/journey" style={{ color: '#d4af37', textDecoration: 'none' }}>故事</a>
+            <a href="/links" style={{ color: '#d4af37', textDecoration: 'none' }}>网络</a>
+          </div>
+
+          {/* 最近游玩横向滚动区域 - 下移一个 section */}
+          <div style={{ marginTop: '4rem' }}>
             <h2 style={{ marginBottom: '1rem', borderLeft: '4px solid #d4af37', paddingLeft: '1rem' }}>🎮 最近游玩</h2>
             {loadingRecent && <p>加载中...</p>}
             <div ref={scrollRef} style={{
@@ -72,7 +83,7 @@ export default function Home() {
               whiteSpace: 'nowrap',
               scrollbarWidth: 'thin',
               paddingBottom: '0.5rem',
-            }}>
+            }} className="custom-scrollbar">
               <div style={{ display: 'flex', gap: '1rem' }}>
                 {recentGames.map(game => (
                   <div key={game.appid} style={{
@@ -83,7 +94,7 @@ export default function Home() {
                     padding: '0.8rem',
                     display: 'inline-flex',
                     alignItems: 'center',
-                    backdropFilter: 'blur(2px)',
+                    backdropFilter: 'blur(12px)', // 提高模糊度
                     boxShadow: '0 4px 12px rgba(0,0,0,0.5)',
                     transition: 'transform 0.2s',
                     cursor: 'default',
@@ -112,14 +123,6 @@ export default function Home() {
                 ))}
               </div>
             </div>
-          </div>
-
-          {/* 导航按钮 */}
-          <div style={{ marginTop: '3rem', display: 'flex', justifyContent: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
-            <a href="/battlestation" style={{ color: '#d4af37', textDecoration: 'none' }}>装备库</a>
-            <a href="/portfolio" style={{ color: '#d4af37', textDecoration: 'none' }}>作品集</a>
-            <a href="/journey" style={{ color: '#d4af37', textDecoration: 'none' }}>故事</a>
-            <a href="/links" style={{ color: '#d4af37', textDecoration: 'none' }}>网络</a>
           </div>
         </div>
       </div>

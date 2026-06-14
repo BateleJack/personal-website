@@ -5,4 +5,19 @@ html, body {
   min-height: 100vh;
   background-color: #0a0a0a; /* 后备背景，当页面背景未覆盖时显示（一般不会出现） */
 }
-/* 可选：让 body 作为 flex 容器，但不需要 */
+
+/* 自定义横向滚动条 */
+.custom-scrollbar::-webkit-scrollbar {
+  height: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #1a1a1a;
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #d4af37;
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #b88b2c;
+}
