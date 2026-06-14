@@ -1,6 +1,0 @@
-{
-  "build": {
-    "command": "npx @cloudflare/next-on-pages@latest",
-    "output_dir": "out"
-  }
-}
