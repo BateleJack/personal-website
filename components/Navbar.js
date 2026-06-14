@@ -1,8 +1,11 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 export default function Navbar() {
+  const router = useRouter();
+  const isHome = router.pathname === '/';
+
   const navItems = [
-    { name: '机库', path: '/' },
     { name: '装备库', path: '/battlestation' },
     { name: '作品集', path: '/portfolio' },
     { name: '故事', path: '/journey' },
@@ -12,6 +15,11 @@ export default function Navbar() {
   return (
     <nav style={styles.nav}>
       <div style={styles.container}>
+        {!isHome && (
+          <Link href="/" style={styles.link}>
+            机库
+          </Link>
+        )}
         {navItems.map(item => (
           <Link key={item.path} href={item.path} style={styles.link}>
             {item.name}
