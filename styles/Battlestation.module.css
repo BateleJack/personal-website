@@ -1,11 +1,4 @@
 /* ========== 紫色主题变量 ========== */
-:root {
-  --purple-darkest: #8C4DA3;
-  --purple-dark: #A168B6;
-  --purple-mid: #B683CA;
-  --purple-light: #CB9EDE;
-  --purple-lightest: #E0BAF2;
-}
 
 .container {
   max-width: 1200px;
