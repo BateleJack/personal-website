@@ -1,3 +1,12 @@
+/* ========== 紫色主题变量 ========== */
+:root {
+  --purple-darkest: #8C4DA3;
+  --purple-dark: #A168B6;
+  --purple-mid: #B683CA;
+  --purple-light: #CB9EDE;
+  --purple-lightest: #E0BAF2;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -6,18 +15,17 @@
   color: #eaeaea;
 }
 
-/* 标题使用 ROG 紫色渐变（仅本页） */
+/* 主标题 */
 .title {
-position: relative;     
+  position: relative;
   font-size: 3rem;
   text-align: center;
-  background: linear-gradient(135deg, var(--purple-mid), var(--purple-darkest));
+  background: linear-gradient(135deg, var(--purple-light), var(--purple-darkest));
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
   margin-bottom: 2rem;
 }
-
 .title::after {
   content: '';
   position: absolute;
@@ -29,47 +37,164 @@ position: relative;
   background: linear-gradient(90deg, var(--purple-mid), var(--purple-darkest));
 }
 
-/* 卡片图片区斜切角装饰（可选） */
-.imageArea {
-  position: relative;
-  overflow: hidden;
+/* 简介区 + 机箱照片 */
+.introWrapper {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  background: rgba(139, 77, 163, 0.15);
+  border-radius: 20px;
+  padding: 2rem;
+  margin-bottom: 3rem;
+  border: 1px solid var(--purple-mid);
+  flex-wrap: wrap;
+}
+.introText {
   flex: 1;
-  min-height: 200px;
-  background: linear-gradient(135deg, var(--purple-darkest), var(--purple-light));
+}
+.introText p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0;
+}
+.casePhoto {
+  flex: 0 0 auto;
+  width: 300px;
+}
+.caseImage {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid var(--purple-mid);
+}
+
+/* 响应式简介区 */
+@media (max-width: 768px) {
+  .introWrapper {
+    flex-direction: column;
+    text-align: center;
+  }
+  .casePhoto {
+    width: 80%;
+  }
+}
+
+/* 硬件卡片容器 */
+.hardwareSection {
+  margin-bottom: 4rem;
+}
+
+/* 卡片 - 提高最小高度 */
+.card {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  background: #111;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid #2a2a2a;
+  transition: all 0.3s;
+  min-height: 320px;  /* 提高卡片高度 */
+}
+.card:hover {
+  border-color: var(--purple-mid);
+  transform: translateY(-4px);
+}
+
+/* 图片区域 - 提高高度 */
+.imageArea {
+  flex: 1;
+  min-height: 260px;   /* 原来是 200px */
+  background: #0a0a0a;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  font-size: 3rem;
+  overflow: hidden;
+}
+.hardwareImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.card:hover .hardwareImage {
+  transform: scale(1.02);
 }
 
-.imageArea::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 30px;
-  height: 30px;
-  background: linear-gradient(135deg, transparent 50%, var(--purple-dark) 50%);
-  pointer-events: none;
+/* 信息区 - 增加内边距 */
+.infoArea {
+  flex: 1;
+  padding: 1.8rem;     /* 原 1.5rem，增加舒适度 */
 }
-
-/* 卡片悬停文字颜色 */
-.card:hover .infoArea h3 {
-  color: var(--purple-light);
+.infoArea h3 {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+  color: var(--purple-lightest);
   transition: color 0.2s;
 }
+.card:hover .infoArea h3 {
+  color: var(--purple-light);
+}
+.infoArea .sub {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-bottom: 0.5rem;
+}
+.infoArea .desc {
+  font-size: 1rem;
+  line-height: 1.4;
+  margin-top: 0.5rem;
+}
 
-/* 列表项悬停 */
+/* 交替布局 */
+.reverse {
+  flex-direction: row-reverse;
+}
+
+/* 简单列表 */
+.simpleList {
+  background: #111;
+  border-radius: 20px;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  border: 1px solid #2a2a2a;
+}
+.simpleList ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.simpleList li {
+  background: #1a1a1a;
+  padding: 0.4rem 1rem;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  border-left: 3px solid var(--purple-mid);
+  transition: all 0.2s;
+}
 .simpleList li:hover {
   background: var(--purple-dark);
   color: #0a0a0a;
   border-left-color: var(--purple-lightest);
-  transition: all 0.2s;
   cursor: default;
 }
 
-/* ROG 紫色按钮（你提供的样式） */
+.sectionTitle {
+  font-size: 2rem;
+  background: linear-gradient(135deg, var(--purple-light), var(--purple-mid));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  border-left: 4px solid var(--purple-mid);
+  padding-left: 1rem;
+  margin: 2rem 0 1.5rem;
+}
+
+/* 按钮样式（如需） */
 .rogButton {
   display: inline-block;
   background: transparent;
@@ -105,118 +230,26 @@ position: relative;
   width: 100%;
 }
 
-.sectionTitle {
-  font-size: 2rem;
-  background: linear-gradient(135deg, var(--purple-light), var(--purple-mid));
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  border-left: 4px solid var(--purple-mid);
-  padding-left: 1rem;
-  margin: 2rem 0 1.5rem;
-}
-
-/* 简介区域 */
-.intro {
-  background: rgba(139, 77, 163, 0.15);
-  border-radius: 20px;
-  padding: 2rem;
-  margin-bottom: 3rem;
-  text-align: center;
-  border: 1px solid var(--purple-mid);
-}
-
-.intro p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-}
-
-/* 硬件卡片容器 */
-.hardwareSection {
-  margin-bottom: 4rem;
-}
-
-/* 交替布局：默认左图右文，通过类名切换 */
-.card {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  background: #111;
-  border-radius: 24px;
-  overflow: hidden;
-  border: 1px solid #2a2a2a;
-  transition: all 0.3s;
-}
-
-.card:hover {
-  border-color: var(--purple-mid);
-  transform: translateY(-4px);
-}
-
-
-/* 右侧信息区 */
-.infoArea {
-  flex: 1;
-  padding: 1.5rem;
-}
-
-.infoArea h3 {
-  font-size: 1.6rem;
-  margin-bottom: 0.5rem;
-  color: var(--purple-lightest);
-}
-
-.infoArea .sub {
-  font-size: 0.9rem;
-  color: #aaa;
-  margin-bottom: 0.5rem;
-}
-
-.infoArea .desc {
-  font-size: 1rem;
-  line-height: 1.4;
-  margin-top: 0.5rem;
-}
-
-/* 交替布局：右图左文（通过 order 调整） */
-.reverse {
-  flex-direction: row-reverse;
-}
-
-/* 简单列表区域 */
-.simpleList {
-  background: #111;
-  border-radius: 20px;
-  padding: 1.5rem;
-  margin-top: 2rem;
-  border: 1px solid #2a2a2a;
-}
-
-.simpleList ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.simpleList li {
-  background: #1a1a1a;
-  padding: 0.4rem 1rem;
-  border-radius: 30px;
-  font-size: 0.9rem;
-  border-left: 3px solid var(--purple-mid);
-}
-
+/* 响应式 */
 @media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+  .title {
+    font-size: 2rem;
+  }
   .card {
     flex-direction: column;
+    min-height: auto;  /* 移动端取消固定高度，让内容自然撑开 */
   }
   .reverse {
     flex-direction: column;
   }
   .imageArea {
     width: 100%;
-    min-height: 150px;
+    min-height: 200px;
+  }
+  .infoArea {
+    width: 100%;
   }
 }
