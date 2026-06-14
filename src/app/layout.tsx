@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Batele Jack",
+  title: "Personal Website of Batele Jack",
   description: "Narrative Completionist & Hardware Enthusiast",
   icons: {
     icon: "/favicon.png",
