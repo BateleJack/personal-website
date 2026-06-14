@@ -1,1 +1,4 @@
+name = "personal-website"
+compatibility_date = "2026-6-14"
+compatibility_flags = [ "nodejs_compat" ]
 pages_build_output_dir = ".vercel/output/static"
