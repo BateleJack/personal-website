@@ -6,6 +6,14 @@ html, body {
   background-color: #0a0a0a; /* 后备背景，当页面背景未覆盖时显示（一般不会出现） */
 }
 
+:root {
+  --purple-darkest: #8C4DA3;
+  --purple-dark: #A168B6;
+  --purple-mid: #B683CA;
+  --purple-light: #CB9EDE;
+  --purple-lightest: #E0BAF2;
+}
+
 /* 自定义横向滚动条 */
 .custom-scrollbar::-webkit-scrollbar {
   height: 6px;
