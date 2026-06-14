@@ -22,5 +22,10 @@
     "postcss": "^8",
     "autoprefixer": "^10.4.19",
     "@cloudflare/next-on-pages": "^1.13.0"
+
+}  
+  "scripts": {
+  "pages:build": "npx @cloudflare/next-on-pages@latest",
+  "preview": "npm run pages:build && wrangler pages dev .vercel/output/static",
+  "deploy": "npm run pages:build && wrangler pages deploy .vercel/output/static --project-name=personal-website"
   }
-}
