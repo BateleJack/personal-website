@@ -7,7 +7,7 @@ const socialLinks = [
   { name: 'Steam', url: 'https://steamcommunity.com/profiles/76561199477098499', icon: 'https://cdn.simpleicons.org/steam/white' },
   { name: 'YouTube', url: 'https://www.youtube.com/channel/UCvWG_KhLBmvBKM7ePJc-UIQ', icon: 'https://cdn.simpleicons.org/youtube/white' },
   { name: 'Instagram', url: 'https://www.instagram.com/batelejack', icon: 'https://cdn.simpleicons.org/instagram/white' },
-  { name: 'Xbox', url: 'https://www.xbox.com/', icon: 'https://cdn.simpleicons.org/xbox/white' },
+  { name: 'Xbox', url: 'https://www.xbox.com/', icon: 'https://api.iconify.design/simple-icons:xbox.svg?color=white' },
   { name: 'GitHub', url: 'https://github.com/BateleJack', icon: 'https://cdn.simpleicons.org/github/white' },
   { name: 'Roblox', url: 'https://roblox.com/users/3464832936/profile', icon: 'https://cdn.simpleicons.org/roblox/white' },
 ];

@@ -1,33 +1,27 @@
-import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import { useTranslation } from '../lib/i18n';
 
 export default function Navbar() {
-  const { pathname } = useRouter();
   const { t, locale } = useTranslation();
-  const isZh = locale === 'zh';
+  const [currentPath, setCurrentPath] = useState('');
+
+  useEffect(() => {
+    setCurrentPath(window.location.pathname);
+  }, []);
+
+  const isZh = currentPath.startsWith('/zh');
   const prefix = isZh ? '/zh' : '';
 
-  const isHome = pathname === '/' || pathname === '/zh';
-
-  const navItems = [
-    { name: t.nav.battlestation, path: `${prefix}/battlestation` },
-    { name: t.nav.portfolio, path: `${prefix}/portfolio` },
-    { name: t.nav.journey, path: `${prefix}/journey` },
-    { name: t.nav.links, path: `${prefix}/links` },
-  ];
-
   const switchToZh = () => {
-    let targetPath = '/zh' + (pathname === '/' ? '' : pathname === '/zh' ? '' : pathname);
-    // 如果当前已经是 /zh 路径，不做跳转
-    if (pathname.startsWith('/zh')) return;
+    const targetPath = '/zh' + (currentPath === '/' ? '' : currentPath);
+    if (currentPath.startsWith('/zh')) return;
     localStorage.setItem('batele_lang', 'zh');
     window.location.href = targetPath;
   };
 
   const switchToEn = () => {
-    const targetPath = pathname.replace(/^\/zh/, '') || '/';
-    if (!pathname.startsWith('/zh')) return;
+    const targetPath = currentPath.replace(/^\/zh/, '') || '/';
+    if (!currentPath.startsWith('/zh')) return;
     localStorage.setItem('batele_lang', 'en');
     window.location.href = targetPath;
   };
@@ -35,16 +29,13 @@ export default function Navbar() {
   return (
     <nav style={styles.nav}>
       <div style={styles.container}>
-        {!isHome && (
-          <Link href={prefix === '/zh' ? '/zh' : '/'} style={styles.link}>
-            {isZh ? '首页' : 'Home'}
-          </Link>
-        )}
-        {navItems.map(item => (
-          <Link key={item.path} href={item.path} style={styles.link}>
-            {item.name}
-          </Link>
-        ))}
+        <a href={prefix === '/zh' ? '/zh' : '/'} style={styles.link}>
+          {isZh ? '首页' : 'Home'}
+        </a>
+        <a href={`${prefix}/battlestation`} style={styles.link}>{t.nav.battlestation}</a>
+        <a href={`${prefix}/portfolio`} style={styles.link}>{t.nav.portfolio}</a>
+        <a href={`${prefix}/journey`} style={styles.link}>{t.nav.journey}</a>
+        <a href={`${prefix}/links`} style={styles.link}>{t.nav.links}</a>
         <button onClick={isZh ? switchToEn : switchToZh} style={styles.langButton}>
           {isZh ? 'English' : '中文'}
         </button>
