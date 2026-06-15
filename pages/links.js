@@ -1,6 +1,7 @@
 import Navbar from '../components/Navbar';
 import styles from '../styles/Links.module.css';
 import { useEffect, useState } from 'react';
+import { useTranslation } from '../lib/i18n';
 
 const socialLinks = [
   { name: 'Steam', url: 'https://steamcommunity.com/profiles/76561199477098499', icon: 'https://cdn.simpleicons.org/steam/white' },
@@ -17,11 +18,12 @@ const discordInvites = [
 ];
 
 export default function Links() {
+  const { t } = useTranslation();
+
   const [emailDisplay, setEmailDisplay] = useState(false);
   const [emailAddress, setEmailAddress] = useState('');
 
   useEffect(() => {
-    // 动态拼接邮箱地址，防止爬虫直接抓取
     const user = 'batelejack';
     const domain = 'gmail.com';
     const fullEmail = `${user}@${domain}`;
@@ -36,8 +38,8 @@ export default function Links() {
     <>
       <Navbar />
       <div className={styles.container}>
-        <h1 className={styles.title}>🔗 网络枢纽</h1>
-        <p className={styles.subtitle}>我的所有线上据点，欢迎访问~</p>
+        <h1 className={styles.title}>{t.links.title}</h1>
+        <p className={styles.subtitle}>{t.links.subtitle}</p>
 
         <div className={styles.cardGrid}>
           {socialLinks.map(link => (
@@ -49,7 +51,7 @@ export default function Links() {
         </div>
 
         <div className={styles.discordSection}>
-          <h2>💬 Discord 社区</h2>
+          <h2>{t.links.discordTitle}</h2>
           <div className={styles.discordGrid}>
             {discordInvites.map(invite => (
               <a key={invite.name} href={invite.url} target="_blank" rel="noopener noreferrer" className={styles.discordCard}>
@@ -60,19 +62,18 @@ export default function Links() {
         </div>
 
         <div className={styles.contact}>
-          <h2>📧 联系方式</h2>
+          <h2>{t.links.contactTitle}</h2>
           {!emailDisplay ? (
             <div>
-              <p>
-                如有合作或交流意愿，可以点击下方按钮显示邮箱：
-              </p>
+              <p>{t.links.contactPrompt}</p>
               <button onClick={showEmail} className={styles.emailButton}>
-                显示邮箱地址
+                {t.links.showEmailButton}
               </button>
             </div>
           ) : (
             <p>
-              📧 发送邮件至：<strong>
+              {t.links.emailLabel}
+              <strong>
                 <a href={`mailto:${emailAddress}`} className={styles.emailLink}>
                   {emailAddress}
                 </a>

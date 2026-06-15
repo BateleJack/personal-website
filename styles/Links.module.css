@@ -103,7 +103,7 @@
 }
 
 .emailButton {
-  background: var(--purple-dark, #A168B6);
+  background: var(--purple-dark, #d4af37);
   border: none;
   color: white;
   padding: 0.5rem 1.2rem;
@@ -114,14 +114,14 @@
   margin-top: 0.5rem;
 }
 .emailButton:hover {
-  background: var(--purple-mid, #B683CA);
+  background: var(--purple-mid, #edc43f);
   transform: translateY(-2px);
 }
 .emailLink {
-  color: var(--purple-light, #CB9EDE);
+  color: var(--purple-light, #d4af37);
   text-decoration: none;
   border-bottom: 1px dashed var(--purple-light);
 }
 .emailLink:hover {
-  color: var(--purple-lightest, #E0BAF2);
+  color: var(--purple-lightest, #edc43f);
 }

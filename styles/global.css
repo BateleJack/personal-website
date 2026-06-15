@@ -1,20 +1,40 @@
-/* 重置边距，确保 body 占满视口 */
+/* 基础样式：确保 body 占满视口 */
 html, body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  background-color: #0a0a0a; /* 后备背景，当页面背景未覆盖时显示（一般不会出现） */
 }
 
-:root {
-  --purple-darkest: #8C4DA3;
-  --purple-dark: #A168B6;
-  --purple-mid: #B683CA;
-  --purple-light: #CB9EDE;
-  --purple-lightest: #E0BAF2;
+body {
+  background-color: #0a0a0a;  /* 默认背景（纯色） */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* 背景固定，可选 */
+  transition: background-image 0.2s ease;
 }
 
-/* 自定义横向滚动条 */
+/* 装备库专属全屏背景 */
+body.page-battlestation {
+  background-image: url('/images/Battlestation.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+/* 未来其他页面背景示例 */
+body.page-home {
+  background-image: url('/images/home-bg.jpg');
+  /* 或者纯色背景：不要 background-image，或者设置为 none */
+}
+
+body.page-portfolio {
+  background-color: #0a1a0a;  /* 自定义纯色 */
+  background-image: none;
+}
+
+/* 自定义横向滚动条（保持不变） */
 .custom-scrollbar::-webkit-scrollbar {
   height: 6px;
 }

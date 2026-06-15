@@ -1,23 +1,43 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useTranslation } from '../lib/i18n';
 
 export default function Navbar() {
-  const router = useRouter();
-  const isHome = router.pathname === '/';
+  const { pathname } = useRouter();
+  const { t, locale } = useTranslation();
+  const isZh = locale === 'zh';
+  const prefix = isZh ? '/zh' : '';
+
+  const isHome = pathname === '/' || pathname === '/zh';
 
   const navItems = [
-    { name: '装备库', path: '/battlestation' },
-    { name: '作品集', path: '/portfolio' },
-    { name: '故事', path: '/journey' },
-    { name: '网络', path: '/links' },
+    { name: t.nav.battlestation, path: `${prefix}/battlestation` },
+    { name: t.nav.portfolio, path: `${prefix}/portfolio` },
+    { name: t.nav.journey, path: `${prefix}/journey` },
+    { name: t.nav.links, path: `${prefix}/links` },
   ];
+
+  const switchToZh = () => {
+    let targetPath = '/zh' + (pathname === '/' ? '' : pathname === '/zh' ? '' : pathname);
+    // 如果当前已经是 /zh 路径，不做跳转
+    if (pathname.startsWith('/zh')) return;
+    localStorage.setItem('batele_lang', 'zh');
+    window.location.href = targetPath;
+  };
+
+  const switchToEn = () => {
+    const targetPath = pathname.replace(/^\/zh/, '') || '/';
+    if (!pathname.startsWith('/zh')) return;
+    localStorage.setItem('batele_lang', 'en');
+    window.location.href = targetPath;
+  };
 
   return (
     <nav style={styles.nav}>
       <div style={styles.container}>
         {!isHome && (
-          <Link href="/" style={styles.link}>
-            机库
+          <Link href={prefix === '/zh' ? '/zh' : '/'} style={styles.link}>
+            {isZh ? '首页' : 'Home'}
           </Link>
         )}
         {navItems.map(item => (
@@ -25,6 +45,9 @@ export default function Navbar() {
             {item.name}
           </Link>
         ))}
+        <button onClick={isZh ? switchToEn : switchToZh} style={styles.langButton}>
+          {isZh ? 'English' : '中文'}
+        </button>
       </div>
     </nav>
   );
@@ -44,6 +67,7 @@ const styles = {
     margin: '0 auto',
     display: 'flex',
     justifyContent: 'center',
+    alignItems: 'center',
     gap: '2rem',
     flexWrap: 'wrap',
   },
@@ -53,7 +77,14 @@ const styles = {
     fontSize: '1.1rem',
     transition: 'color 0.2s',
   },
-  linkHover: {
+  langButton: {
+    background: 'transparent',
+    border: '1px solid #d4af37',
     color: '#d4af37',
+    padding: '0.3rem 0.8rem',
+    borderRadius: '20px',
+    cursor: 'pointer',
+    fontSize: '0.9rem',
+    transition: 'all 0.2s',
   },
 };
