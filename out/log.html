@@ -1,0 +1,21 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8" data-next-head=""/><link rel="icon" type="image/png" href="/favicon.png" data-next-head=""/><meta name="viewport" content="width=device-width, initial-scale=1" data-next-head=""/><link rel="alternate" href="https://batelejack.com/" hreflang="en"/><link rel="alternate" href="https://batelejack.com/zh/" hreflang="zh"/><link rel="alternate" href="https://batelejack.com/" hreflang="x-default"/><script>
+            (function() {
+              var savedLang = localStorage.getItem('batele_lang');
+              if (savedLang === 'zh') {
+                if (!window.location.pathname.startsWith('/zh')) {
+                  var zhPath = '/zh' + (window.location.pathname === '/' ? '' : window.location.pathname);
+                  window.location.replace(zhPath);
+                }
+                return;
+              }
+              if (savedLang === 'en') return;
+
+              var userLang = navigator.language || navigator.userLanguage;
+              var isZh = userLang && userLang.toLowerCase().startsWith('zh');
+              var currentIsZh = window.location.pathname.startsWith('/zh');
+              if (isZh && !currentIsZh) {
+                var newPath = '/zh' + (window.location.pathname === '/' ? '' : window.location.pathname);
+                window.location.replace(newPath);
+              }
+            })();
+          </script><link rel="preload" href="/_next/static/chunks/0t4gijgyh_hej.css" as="style"/><link rel="stylesheet" href="/_next/static/chunks/0t4gijgyh_hej.css" data-n-g=""/><noscript data-n-css=""></noscript><script src="/_next/static/chunks/2tpr1r5mjc27p.js" defer=""></script><script src="/_next/static/chunks/3n8duck6w_9-1.js" defer=""></script><script src="/_next/static/chunks/turbopack-2t16ur-i96m9v.js" defer=""></script><script src="/_next/static/chunks/0irvve-ea_4tv.js" defer=""></script><script src="/_next/static/chunks/turbopack-08tq7ejr6jjah.js" defer=""></script><script src="/_next/static/9qTUYPk-Bc_XiOyTSZtMC/_buildManifest.js" defer=""></script><script src="/_next/static/9qTUYPk-Bc_XiOyTSZtMC/_ssgManifest.js" defer=""></script><script src="/_next/static/9qTUYPk-Bc_XiOyTSZtMC/_clientMiddlewareManifest.js" defer=""></script></head><body><div id="__next"><div style="min-height:100vh"><nav style="background:#0a0a0a;border-bottom:1px solid #d4af37;padding:1rem 0;position:sticky;top:0;z-index:100"><div style="max-width:1200px;margin:0 auto;display:flex;justify-content:center;align-items:center;gap:2rem;flex-wrap:wrap"><a href="/" style="color:#eaeaea;text-decoration:none;font-size:1.1rem;transition:color 0.2s">Home</a><a href="/battlestation" style="color:#eaeaea;text-decoration:none;font-size:1.1rem;transition:color 0.2s">Battlestation</a><a href="/portfolio" style="color:#eaeaea;text-decoration:none;font-size:1.1rem;transition:color 0.2s">Portfolio</a><a href="/journey" style="color:#eaeaea;text-decoration:none;font-size:1.1rem;transition:color 0.2s">Journey</a><a href="/links" style="color:#eaeaea;text-decoration:none;font-size:1.1rem;transition:color 0.2s">Links</a><button style="background:transparent;border:1px solid #d4af37;color:#d4af37;padding:0.3rem 0.8rem;border-radius:20px;cursor:pointer;font-size:0.9rem;transition:all 0.2s">中文</button></div></nav><div style="max-width:1000px;margin:0 auto;padding:2rem;background:#0a0a0a;color:#eaeaea"><h1>📋 调试日志</h1><p>加载中...</p></div></div></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/log","query":{},"buildId":"9qTUYPk-Bc_XiOyTSZtMC","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
